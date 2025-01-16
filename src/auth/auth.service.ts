@@ -44,11 +44,11 @@ export class AuthService {
     async validateUser(dto:LoginDto){
         const user =  await this.userService.findByEmail(dto.email);
 
-        if(user && (compare(dto.password, user.password))){
+        if(user && (await compare(dto.password, user.password))){
             const {password, ...result} =  user;
             return result;
         }
 
-        throw new UnauthorizedException("Error al validar usuario");
+        throw new UnauthorizedException("Contraseña incorrecta");
     }
 }
