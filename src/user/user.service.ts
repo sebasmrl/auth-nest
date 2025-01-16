@@ -34,4 +34,12 @@ export class UserService {
         console.log("--------------------------------------------------se creo", newUser)
         return result;
     }
+
+    async findByEmail(email:string){
+        return await this.prismaService.user.findUnique({
+            where:{
+                email: email
+            }
+        })
+    }
 }
