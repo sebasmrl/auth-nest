@@ -1,15 +1,17 @@
-import { IsEmail, IsString } from "class-validator";
+import { IsEmail, IsString, MinLength } from "class-validator";
 
 export class CreateUserDto{
 
-    @IsString()
+    @IsString({message:"Campo 'name' es requirido"})
     name:string;
 
-    @IsString()
-    @IsEmail({}, { message:"El campo email es requerido"})
+    @IsString({ message:"Campo 'email' es requerido"})
+    @IsEmail({}, { message:"Campo 'email' debe ser un email válido"})
     email:string;
 
-    @IsString()
+    
+    @IsString({ message:"Campo 'password' es requerido"})
+    @MinLength(10, { message:"Campo 'password' debe tener minimo 10 caracteres"})
     password:string;
 
     mascota:number;
