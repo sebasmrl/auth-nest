@@ -42,4 +42,13 @@ export class UserService {
             }
         })
     }
+
+    async findById(id:number){
+        return await this.prismaService.user.findUnique({
+            where:{
+                id:id
+            }
+        })
+        
+    }
 }
